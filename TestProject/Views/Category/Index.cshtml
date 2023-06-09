@@ -1,0 +1,42 @@
+﻿@model CategoryInfoModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="align-self-start">Product Table </h1>
+<a asp-action="AddEditCategory"  class="btn btn-success">Add Product</a>
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+@if(Model!=null)
+{
+    
+    if(Model.CategoriesList.Count>0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Group Name</th>
+                <th>Date</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.CategoriesList)
+                {
+                <tr>
+                    <td>@item.Category_Id</td>
+                    <td>@item.CategoryTitle</td>
+                    <td>@item.GroupName</td>
+                    <td>@item.CreationDate</td>
+                    <td>
+                            <a asp-action="AddEditCategory" class="btn btn-info" asp-route-id="@item.Category_Id">Edit</a>
+                            <a asp-action="Details" class="btn btn-dark" asp-route-id="@item.Category_Id">Details</a>
+                      @*  <a asp-action="Edit" asp-route-id="@item.Category_Id">Delete</a>*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
